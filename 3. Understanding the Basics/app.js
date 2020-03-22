@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
 
     const url = req.url;
     const method = req.method;
-    console.log(method);
+    // console.log(method);
     // const data = req.
 
     if (url === '/') {
@@ -31,7 +31,24 @@ const server = http.createServer((req, res) => {
         return res.end();
     }
     if (url === '/message' && method === 'POST') {
-        fs.writeFileSync('submitted.txt', 'Test');
+        /*
+        Implementing extraction of data from post request.
+         */
+
+        const body = [];
+        req.on('data', chunk => {
+            console.log(chunk + ',');
+            body.push(chunk);
+        });
+
+        req.on('end', () => {
+            const parsedBody = Buffer.concat(body).toString();
+            console.log(parsedBody);
+            const dataOnly = parsedBody.split('=')[1];
+            fs.writeFileSync('submitted.txt', dataOnly);
+        });
+
+
         res.statusCode = 302;
         res.setHeader('Location', '/');
         // console.log('hi');
