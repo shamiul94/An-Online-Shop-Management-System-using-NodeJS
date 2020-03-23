@@ -41,18 +41,22 @@ const server = http.createServer((req, res) => {
             body.push(chunk);
         });
 
-        req.on('end', () => {
+        return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
             const dataOnly = parsedBody.split('=')[1];
-            fs.writeFileSync('submitted.txt', dataOnly);
+
+            /*
+                writeFileSync ==> blocking code
+                writeFile ==> non-blocking code
+             */
+            // fs.writeFileSync('submitted.txt', dataOnly);
+            fs.writeFile('submitted.txt', dataOnly, err => {
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
         });
-
-
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
-        // console.log('hi');
-        return res.end();
     }
 
     res.setHeader('Content-Type', 'text/html');
@@ -61,7 +65,6 @@ const server = http.createServer((req, res) => {
     res.write('<body> Node JS response html! Yayy! </body>');
     res.write('</html>');
     res.end();
-
 });
 
 server.listen(3000);
