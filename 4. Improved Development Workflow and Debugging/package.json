@@ -1,0 +1,14 @@
+{
+  "name": "package_week_4",
+  "version": "1.0.0",
+  "description": "week 4 package creation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server-rumman": "node app.js"
+
+  },
+  "author": "heisenberg",
+  "license": "ISC"
+}
