@@ -27,7 +27,7 @@ const requestHandler = (req, res) => {
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
-            const dataOnly = parsedBody.split('=')[1];
+            const dataOnly = parsedBody.split('=')[0];
 
             /*
                 writeFileSync ==> blocking code
