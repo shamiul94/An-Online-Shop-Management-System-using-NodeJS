@@ -3,11 +3,14 @@ const express = require('express');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const path = require('path');
+const rootDir = require('./util/path');
 
 const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(express.static(path.join(rootDir, 'public')));
 
 // order matters for next two lines.
 app.use('/admin', adminRoutes);
