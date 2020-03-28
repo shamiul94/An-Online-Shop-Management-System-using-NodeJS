@@ -41,3 +41,9 @@ run this command. It will check the package.json and package-lock.json file and 
 -> every time we will run the project by this command from now on. 
 It runs according to the package.jason file.
 ```
+
+## Necessary Packages Installation
+```$xslt
+1. sudo npm install --save ejs pug express-handlebars
+-> These are 3 alternatives of template engines.
+```
