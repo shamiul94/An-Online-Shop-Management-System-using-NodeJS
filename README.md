@@ -2,6 +2,11 @@
 
 I am completing Udemy NodeJS course. 
 
+## How to inspect the code? 
+This course goes week by week. So, my codes are divided in weekly folders too. There might be overlaps in different weeks but it's easy to maintain and recap later this way. After completing the full project (with database and everything) I will publish it in a different repository as a full project too. If you are already experienced in Node JS, you can skip this repo and look into that repo.
+
+# How to run this project? 
+Go in every folder and run below commands serially.
 ## Basic npm Commands
 ```$xslt
 1. npm init
