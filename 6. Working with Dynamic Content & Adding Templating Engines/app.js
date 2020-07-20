@@ -6,9 +6,14 @@ const path = require('path');
 const rootDir = require('./util/path');
 
 const bodyParser = require('body-parser');
+
+const expressHandlebars = require('express-handlebars');
+
 const app = express();
 
-app.set('view engine', 'pug'); // from doc.
+app.engine('hbs', expressHandlebars());
+// app.set('view engine', 'pug'); // from doc. --> for pug 
+app.set('view engine', 'hbs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
