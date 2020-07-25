@@ -22,7 +22,9 @@
                             <p class="product__description">A very interesting book about so many even more interesting things!</p>
                         </div>
                         <div class="card__actions">
-                            <button class="btn">Add to Cart</button>
+                            <form class="product-form" action="/cart" method="POST" target="_parent">
+                                <button class="btn" name="product_name" type="submit" value="<%= product.title %>">Add To Cart</button>
+                            </form>
                         </div>
                     </article>
                 <% } %>

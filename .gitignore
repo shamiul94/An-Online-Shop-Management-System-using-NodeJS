@@ -92,3 +92,4 @@ typings/
 .idea
 */dist/
 dist/
+test.js
