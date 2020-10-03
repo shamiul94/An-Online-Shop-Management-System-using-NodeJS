@@ -93,3 +93,5 @@ typings/
 */dist/
 dist/
 test.js
+
+*database.js
