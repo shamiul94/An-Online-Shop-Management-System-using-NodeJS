@@ -2,26 +2,31 @@ const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 
 const uri =
-  "mongodb+srv://shamiul94:rumon159357@cluster0.8zkho.mongodb.net/test?retryWrites=true&w=majority&ssl=true";
+  "";
+
+let _db;
 
 const mongoConnect = (callback) => {
-  mongoClient.connect(uri)
+  mongoClient
+    .connect(uri)
     .then((client) => {
       console.log("Connected!");
-      callback(client);
+      _db = client.db();
+      callback();
     })
     .catch((err) => {
       console.log(err);
+      throw err;
     });
 };
 
-module.exports = mongoConnect; 
+const getDB = () => {
+  if (_db) {
+    return _db;
+  }
 
-///////////////////////////////////
-// const MongoClient = require("mongodb").MongoClient;
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the cA promise is settled if it’s not pending (it has been resolved or rejected). Sometimes people use resolved and settled to mean the same thing: not pending.ollection object
-//   client.close();
-// });
+  throw "No DB Found!";
+};
+
+exports.mongoConnect = mongoConnect;
+exports.getDB = getDB;
